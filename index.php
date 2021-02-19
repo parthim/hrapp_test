@@ -7,37 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <script type="text/javascript" src="currency.json"> -->
-    </script>
-    <script type="text/javascript">
-        // Main Pricing function()
-        function pricing()
-        {
-            var code = get_country_code();
-            
-            var price = fetchData();
-            // console.log(price);
-
-        }
-        
-        //Get  Country code function
-        function get_country_code() 
-        {
-            $.post("ipAddress.php",function(data){
-                $country_code = data;
-                $("#ip").val($country_code);
-                console.log($country_code);
-            });
-
-        }
-    </script>
+    <!-- <script type="text/javascript" src="currency.js">
+    </script> -->
+    
 </head>
 <body onload = "pricing()">
     <div>
     <!-- <input type="button" value = "Get Country code" onclick = "get_country_code()"/></div> -->
     <!-- <input type="text" id = "ip"> -->
     <textarea name="" id="ip" style= "width:300px; height:auto;" ></textarea>
-    <div> <input type="text" id="lite-25">  
+    <div> <textarea type="text" id="lite-25"></textarea>  
     </div>
     <div> <input type="text" id="lite-1">
     </div>
@@ -64,3 +43,50 @@ function fetchData() {
       });
   }
 </script>
+<script type="text/javascript">
+
+        
+
+        //Get  Country code function
+    function get_country_code() {
+    var tmp = null;
+    $.ajax({
+        'async': false,
+        'type': "POST",
+        'global': false,
+        'dataType': 'html',
+        'url': "ipAddress.php?first",
+        'data': { 'request': "", 'target': 'arrange_url', 'method': 'method_target' },
+        'success': function (data) {
+            tmp = data;
+            $("#ip").val(tmp);
+        }
+    });
+    return tmp;
+} 
+
+        // // Main Pricing function()
+        function pricing()
+        {
+            var code = get_country_code();
+            // console.log("Hello",code)
+            $.ajax({
+        'async': false,
+        'type': "POST",
+        'global': false,
+        'dataType': 'html',
+        'url': "currency.json?first",
+        'data': { 'request': "", 'target': 'arrange_url', 'method': 'method_target' },
+        'success': function (data) {
+            tmp = data;
+            $("#lite-25").val(tmp);
+        }
+    });
+
+            
+            // var price = fetchData();
+            // console.log(price);
+
+        }
+        
+    </script>
