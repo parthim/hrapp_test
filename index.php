@@ -16,32 +16,24 @@
     <!-- <input type="button" value = "Get Country code" onclick = "get_country_code()"/></div> -->
     <!-- <input type="text" id = "ip"> -->
     <textarea name="" id="ip" style= "width:300px; height:auto;" ></textarea>
-    <div> <textarea type="text" id="lite-25"></textarea>  
-    </div>
-    <div> <input type="text" id="lite-1">
-    </div>
-    <div>
-    <input type="text" id="pro-25"></div>
-    <div>
-    <div>
-    <input type="text" id="pro-1"></div>
-    <div>
-    <input type="text" id="enterprise-25">
-    </div>
-    <div>
-    <input type="text" id="enterprise-1">
-    </div>
+    <div id="menu_hcm_pricing"></div>
+    <div id="menu_ems_pricing"></div>
+    <div id="pricing_plan_lite_25"></div>
+    <div id="pricing_plan_lite_1"></div>
+    <div id="pricing_plan_pro_25"></div>
+    <div id="pricing_plan_pro_1"></div>
+    <div id="pricing_plan_enterprise_25"></div>
+    <div id="pricing_plan_enterprise_1"></div>
+    <div id="pm_lite"></div>
+    <div id="pm_pro"></div>
+    <div id="pm-enterprise"></div>
+    <div id="ats_lite"></div>
+    <div id="ats_pro"></div>
+    <div id="ats_enterprise"></div>
 </body>
 </html>
 <script>
-function fetchData() {
-    fetch("./currency.json")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        return data;
-      });
-  }
+
 </script>
 <script type="text/javascript">
 
@@ -60,33 +52,61 @@ function fetchData() {
         'success': function (data) {
             tmp = data;
             $("#ip").val(tmp);
+        
         }
     });
     return tmp;
 } 
 
-        // // Main Pricing function()
-        function pricing()
-        {
-            var code = get_country_code();
-            // console.log("Hello",code)
-            $.ajax({
+// // Main Pricing function()
+function pricing()
+{   
+    // Country code is here
+    var code = get_country_code();
+     var price ="";
+    //json file read using ajax
+    $.ajax({
         'async': false,
         'type': "POST",
         'global': false,
         'dataType': 'html',
         'url': "currency.json?first",
         'data': { 'request': "", 'target': 'arrange_url', 'method': 'method_target' },
-        'success': function (data) {
-            tmp = data;
-            $("#lite-25").val(tmp);
+        'success': function (data) 
+        {
+            price = data;
+            $("#pricing_plan_lite-25").val(price);
         }
     });
-
-            
-            // var price = fetchData();
-            // console.log(price);
-
+    // JSON Object is stored here
+    const price_parsed = JSON.parse (price);
+    console.log(price_parsed);
+    if(code.includes("IN"))
+    { 
+        for(var key in price_parsed.inr) {
+            var keys= JSON.stringify(key);
+            keys = keys.replace(/"/g,"");
+            var values= JSON.stringify(price_parsed.inr[key]);
+            values = values.replace(/"/g,"");
+            var temp =  document.getElementById(keys);
+            temp.innerHTML=values;
         }
-        
-    </script>
+    }
+    else
+    {
+        for(var key in price_parsed.usd) {
+            var keys= JSON.stringify(key);
+            keys = keys.replace(/"/g,"");
+            var values= JSON.stringify(price_parsed.usd[key]);
+            values = values.replace(/"/g,"");
+            var temp =  document.getElementById(keys);
+            temp.innerHTML=values;
+        }
+
+    }
+     
+
+   
+}
+
+</script>

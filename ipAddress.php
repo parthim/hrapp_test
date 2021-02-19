@@ -18,6 +18,6 @@ function getVisIpAddr() {
 $vis_ip = getVisIPAddr(); 
 
 $query = @unserialize(file_get_contents('http://ip-api.com/php/'.$vis_ip));
-echo $query['countryCode'];
+echo trim($query['countryCode']);
 
 ?> 
