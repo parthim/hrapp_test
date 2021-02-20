@@ -11,7 +11,7 @@
         "pricing_plan_enterprise_1" : "Rs. 80",
         "pm_lite" : "Rs. 120",
         "pm_pro" : "Rs. 120",
-        "pm-enterprise" : "Rs. 120",
+        "pm_enterprise" : "Rs. 120",
         "ats_lite" : "Rs. 60",
         "ats_pro" : "Rs. 60",
         "ats_enterprise" : "Rs. 60"
@@ -28,7 +28,7 @@
         "pricing_plan_enterprise_1" : "USD 10",
         "pm_lite" : "USD 7",
         "pm_pro" : "USD 7",
-        "pm-enterprise" : "USD 7",
+        "pm_enterprise" : "USD 7",
         "ats_lite" : "USD 5",
         "ats_pro" : "USD 5",
         "ats_enterprise" : "USD 5"

@@ -9,7 +9,7 @@
     <title>Document</title>
     <!-- <script type="text/javascript" src="currency.js">
     </script> -->
-    
+        
 </head>
 <body onload = "pricing()">
     <div>
@@ -26,7 +26,7 @@
     <div id="pricing_plan_enterprise_1"></div>
     <div id="pm_lite"></div>
     <div id="pm_pro"></div>
-    <div id="pm-enterprise"></div>
+    <div id="pm_enterprise"></div>
     <div id="ats_lite"></div>
     <div id="ats_pro"></div>
     <div id="ats_enterprise"></div>
